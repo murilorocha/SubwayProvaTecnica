@@ -1,0 +1,42 @@
+﻿@model Subway.ProvaTecnica.Models.Compra
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Compra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Produtos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Produtos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ativo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conta.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

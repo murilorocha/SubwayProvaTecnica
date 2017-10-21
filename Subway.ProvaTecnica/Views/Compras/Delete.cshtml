@@ -1,0 +1,45 @@
+﻿@model Subway.ProvaTecnica.Models.Compra
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Desativar</h2>
+
+<h3>Você tem certeza que deseja desativar essa compra?</h3>
+<div>
+    <h4>Compra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Produtos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Produtos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ativo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conta.Nome)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Desativar" class="btn btn-default" /> |
+        <a asp-action="Index">Voltar</a>
+    </form>
+</div>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Subway.ProvaTecnica.Models.Compra>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Detalhamento das compras cadastradas</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Produtos: @Html.TextBox("produtoBusca")
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    </p>
+}
+
+<p>
+    <a asp-action="Create">Cadastrar uma compra</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produtos)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Conta)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Produtos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conta.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Desativar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

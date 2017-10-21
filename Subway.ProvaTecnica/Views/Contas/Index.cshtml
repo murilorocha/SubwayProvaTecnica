@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Subway.ProvaTecnica.Models.Conta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script type="text/javascript">
+    //Método para buscar as contas ativas em um intervalo de 60 segundos
+    window.setInterval(function contador() {
+        $.get("Contas\\ContarAtivos", function (data) {
+                $("#contador").text("Contas Ativas: " + data);
+            }, "json");
+    }, 60000);
+</script>
+
+<h2>Detalhamento das contas cadastradas</h2>
+
+<h4 id="contador">Contas Ativas: @Model.Count(x => x.Ativo == true)</h4>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Nome: @Html.TextBox("nomeBusca")
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    </p>
+}
+
+<p>
+    <a asp-action="Create">Adicionar nova conta</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataNascimento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ativo)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Desativar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
